@@ -10,4 +10,5 @@ def month_to_season(month):
     else:
         return "Некорректный номер месяца"
 
+
 print(month_to_season(2))
