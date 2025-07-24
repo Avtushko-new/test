@@ -1,1 +1,2 @@
 "pytest" 
+selenium==4.34.2
