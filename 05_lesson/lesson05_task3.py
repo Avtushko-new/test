@@ -1,18 +1,15 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.firefox.options import Options
 from time import sleep
 
 
 def input_text_operations():
-    # Указание явного пути к geckodriver
-    gecko_path = r"C:\Users\aavtu\Desktop\Инстал\geckodriver.exe"
-
-    # Инициализация сервиса Firefox
-    service = Service(executable_path=gecko_path)
-
-    # Настройка опций Firefox
-    options = webdriver.FirefoxOptions()
+    # Настройка сервиса и опций Firefox
+    service = Service(executable_path=GeckoDriverManager().install())
+    options = Options()
     options.set_preference("dom.webnotifications.enabled", False)
 
     # Инициализация драйвера
@@ -29,11 +26,11 @@ def input_text_operations():
         )
 
         # Ввод и очистка текста
-        input_field.send_keys("Sky")
+        input_field.send_keys("1000")
         sleep(1)
         input_field.clear()
         sleep(1)
-        input_field.send_keys("Pro")
+        input_field.send_keys("42")
         sleep(1)
 
         print("Все операции выполнены успешно!")
