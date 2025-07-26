@@ -15,7 +15,6 @@ def test_click_blue_button():
     options.add_argument("--ignore-ssl-errors")
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
-    driver = None
     try:
         # Инициализация драйвера
         driver = webdriver.Chrome(
@@ -32,46 +31,12 @@ def test_click_blue_button():
                     (By.CSS_SELECTOR, "button.btn-primary")
                 )
             )
+            button.click()
         except Exception as css_exc:
             print(f"Не удалось найти по CSS: {str(css_exc)}")
-            # Способ 2: По тексту кнопки
-            try:
-                button = WebDriverWait(driver, 5).until(
-                    EC.presence_of_element_located(
-                        (By.XPATH, "//button[contains(., 'Button')]")
-                    )
-                )
-            except Exception as xpath_exc:
-                print(f"Не удалось найти по XPATH: {str(xpath_exc)}")
-                # Способ 3: По любому button
-                button = WebDriverWait(driver, 3).until(
-                    EC.presence_of_element_located((By.TAG_NAME, "button"))
-                )
 
-        button.click()
-
-        # Обработка алерта
-        try:
-            WebDriverWait(driver, 3).until(EC.alert_is_present())
-            alert = driver.switch_to.alert
-            alert.accept()
-            print("Успешно: кнопка была нажата и alert обработан")
-        except Exception as alert_exc:
-            print(f"Alert не появился: {str(alert_exc)}")
-            print("Успешно: кнопка была нажата (alert не появился)")
-
-    except Exception as e:
-        print(f"Критическая ошибка: {str(e)}", file=sys.stderr)
-        if driver:
-            driver.save_screenshot("error_screenshot.png")
-            print(
-                "Скриншот сохранен как error_screenshot.png", file=sys.stderr
-            )
-        return 1  # Код ошибки
     finally:
-        if driver:
-            driver.quit()
-    return 0
+        driver.quit()
 
 
 if __name__ == "__main__":

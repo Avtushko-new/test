@@ -21,17 +21,17 @@ def click_dynamic_button():
     # Инициализация драйвера
     service = ChromeService(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
-    sleep(10)
+    sleep(2)
 
     try:
         # Открытие страницы
         driver.get("http://uitestingplayground.com/dynamicid")
-        sleep(10)
+        sleep(2)
 
         # Поиск и клик по кнопке
         button = driver.find_element(By.CSS_SELECTOR, "button.btn-primary")
         button.click()
-        sleep(10)
+        sleep(2)
 
         print("Успех: синяя кнопка была нажата")
 
