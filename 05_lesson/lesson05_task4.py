@@ -1,15 +1,15 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
 from time import sleep
 
 
 def login_and_get_message():
     # Указание пути к geckodriver
-    gecko_path = r"C:\Users\aavtu\Desktop\Инстал\geckodriver.exe"
+    service = Service(executable_path=GeckoDriverManager().install())
 
     # Настройка сервиса Firefox
-    service = Service(executable_path=gecko_path)
     options = webdriver.FirefoxOptions()
 
     # Инициализация драйвера
