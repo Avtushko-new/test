@@ -28,8 +28,9 @@ def driver():
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.title("Полный процесс оформления заказа")
 @allure.description(
-    "Тестирование полного цикла покупки от авторизации до подтверждения заказа"
-    )
+    "Тестирование полного цикла покупки "
+    "от авторизации до подтверждения заказа"
+)
 def test_complete_purchase(driver):
     with allure.step("Авторизация пользователя"):
         login_page = LoginPage(driver)
@@ -58,11 +59,10 @@ def test_complete_purchase(driver):
 
     with allure.step("Проверка итоговой суммы"):
         total = checkout_page.get_total_amount()
-        with allure.step(f"Проверить что сумма равна $58.29 "
-                         f"(фактическая: {total})"):
-            assert total == "Total: $58.29", (
-                f"Ожидалась сумма $58.29, получено {total}"
-            )
+        with allure.step(
+            f"Проверить что сумма равна $58.29 "
+            f"(фактическая: {total})"
+        ):
             assert total == "Total: $58.29", (
                 f"Ожидалась сумма $58.29, получено {total}"
             )
